@@ -14,3 +14,4 @@ import imp
 
 from async_timeout import timeout
 from discord.ext import commands
+from discord.ext.commands import CommandNotFound

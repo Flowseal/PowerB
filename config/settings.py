@@ -1,4 +1,9 @@
+from collections import defaultdict
+
 settings = {
-    'TOKEN': '',
-    'PREFIX': '!',
+    'token': '',
+    'prefix': '!',
 }
+
+commands = defaultdict(dict)
+admin_commands = defaultdict(dict)
