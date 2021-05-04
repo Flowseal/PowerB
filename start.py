@@ -17,7 +17,7 @@ async def on_ready():
 
     for module in custom_modules:
         try:
-            getattr(custom_modules[module], 'on_ready')()
+            await getattr(custom_modules[module], 'on_ready')()
         except:
             pass
 
@@ -34,7 +34,7 @@ async def on_message(message):
 
     for module in custom_modules:
         try:
-            getattr(custom_modules[module], 'on_message')(message)
+            await getattr(custom_modules[module], 'on_message')(message)
         except:
             pass
     
@@ -44,7 +44,7 @@ async def on_message(message):
 async def on_command_error(ctx, error):
     for module in custom_modules:
         try:
-            getattr(custom_modules[module], 'on_command_error')(ctx, error)
+            await getattr(custom_modules[module], 'on_command_error')(ctx, error)
         except:
             pass
 
