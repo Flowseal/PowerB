@@ -23,9 +23,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if '_help' in message.content and message.content[0] == '!':
+    is_command = message.content[0] == prefix
+
+    if '_help' in message.content and is_command:
         cmd = message.content.replace('_help', '')
-        cmd = cmd.replace('!', '')
+        cmd = cmd.replace(prefix, '')
 
         for table in settings.commands:
             for command in settings.commands[table]:
@@ -37,7 +39,16 @@ async def on_message(message):
             await getattr(custom_modules[module], 'on_message')(message)
         except:
             pass
-    
+
+    if is_command:
+        mes = message.content.lower()[1:]
+        for table in settings.admin_commands:
+                for command in settings.admin_commands[table]:
+                    if mes.startswith(command.lower()):
+                        if not message.author.guild_permissions.administrator:
+                            return False
+
+
     await client.process_commands(message)
 
 @client.event

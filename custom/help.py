@@ -29,9 +29,6 @@ async def __help (ctx):
 @client.command(aliases = ['ahelp'])
 async def __ahelp (ctx):
     
-    if not ctx.message.author.guild_permissions.administrator:
-        return False
-
     member = ctx.message.author
     await ctx.send(f'<@{member.id}>, I sent you commands list in PM 👍')
 
