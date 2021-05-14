@@ -4,7 +4,6 @@ settings.commands['Voice rooms']['voice_room_set'] = True
 
 @slash.slash(name="voice_room_set",
              description="Set the room creator from temp voice rooms",
-             guild_ids = [621295534971420683],
              options=[
                create_option(
                  name="room_id",
