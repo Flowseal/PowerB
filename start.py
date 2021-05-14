@@ -23,16 +23,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if (message.author.bot):
+        return False
+    
     is_command = message.content[0] == prefix
-
-    if '_help' in message.content and is_command:
-        cmd = message.content.replace('_help', '')
-        cmd = cmd.replace(prefix, '')
-
-        for table in settings.commands:
-            for command in settings.commands[table]:
-                if command.lower() == cmd.lower():
-                    await message.channel.send(f'> {cmd.lower()}\n' + settings.commands[table][command])
 
     for module in custom_modules:
         try:
@@ -42,9 +36,9 @@ async def on_message(message):
 
     if is_command:
         mes = message.content.lower()[1:]
-        for table in settings.admin_commands:
-                for command in settings.admin_commands[table]:
-                    if mes.startswith(command.lower()):
+        for table in settings.commands:
+                for command in settings.commands[table]:
+                    if mes.startswith(command.lower()) and settings.commands[table][command]:
                         if not message.author.guild_permissions.administrator:
                             return False
 

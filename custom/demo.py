@@ -7,30 +7,35 @@ from tools.client_init import *
 # ..
 
 
-# add commands in dict
 
-# user commands list
-settings.commands['Fun']['hello'] = 'Print hello world!'
+# add an user command
+settings.commands['Fun']['hello'] = False
 
-# admin commands list
-settings.admin_commands['Fun']['set_hello'] = 'Set the greeting message'
+# add an admin command (only admins will avaliable to call it)
+settings.commands['Fun']['hello_admin'] = True
+
+# dict command value is a boolean (True - for admins ; False - for all)
 
 
-# admin command etc
-@client.command(aliases = ['set_hello'])
-async def __set_hello (ctx):
+# user command
+@slash.slash(name="hello",
+             description="demo hello")
+async def hello (ctx):
     pass
 
-# default command etc
-@client.command(aliases = ['hello'])
-async def __hello (ctx):
-    await ctx.send('World!')
+# admin command
+@slash.slash(name="hello_admin",
+             description="demo hello for admins")
+async def hello_admin (ctx):
+    pass
 
-# custom event
-def on_ready_event():
+
+
+# on_ready event trigger
+def on_ready():
     print('ready_event triggered in file demo.py')
 
-# custom event
+# on_message event trigger
 async def on_message(message):
     if (message.content == 'ping'):
         await message.channel.send('pong!')

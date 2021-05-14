@@ -1,6 +1,7 @@
 # PowerB - The most customizable Discord bot
 > ## **Advantages**
 > - One code style (*snake-case*)
+> - Slash commands API
 > - Easy to use
 > - Easy to customize
 > - Easy to add functions
@@ -28,46 +29,49 @@
   <br><br>
 ## <a name="funcstruct"></a>**Function structure**
 ```python
-@client.command(aliases = ['trigger'])
-async def __trigger (ctx):
+@slash.slash(name="help",
+             description="Print list of commands in pm")
+async def help (ctx):
     # your function
     pass
 ```
 **Where:**
-> aliases =
+> name =
 
-List of commands to trigger function (in that case - *trigger*)
+Command to trigger fuinction
 
-> pass
+> .. pass
 
 Your function structure
 
 **Example:**
 
 ```python
-@client.command(aliases = ['hello'])
-async def __hello (ctx):
+@slash.slash(name="hello",
+             description="Hello World!")
+async def hello (ctx):
     await ctx.send('World!')
 ```
-When user types *!hello* (! - prefix in config) bot will reply with message *World!*
+When user types */hello* (/ - prefix for slash commands) bot will reply with message *World!*
 <br><br>
 
 ## **How to add command in !help list**
-**The bot provided with 2 in-build commands:**
-- *!help* - user commands list
-- *!ahelp* - admin commands list
+**The bot provided with help command:**
+- */help* - print command list in pm
 
 **To add a command in each list follow this code:**
 
 Add user command:
-> settings.commands['Fun']['hello'] = 'Print hello world!'
+> settings.commands['Fun']['hello'] = False
 
 Add admin command:
-> settings.admin_commands['Fun']['set_hello'] = 'Set the greeting message'
+> settings.admin_commands['Fun']['set_hello'] = True
 
 *'Fun'* - the category, that will contain provided command
 
 *'hello'* *'set_hello'* - command
+
+**True** - for admins only | **False** - for everyone
 
 = '..' - command description (will be printed with *command*_help)
 <br><br>

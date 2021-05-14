@@ -2,8 +2,9 @@ from tools.imports import *
 from config import settings
 
 intents = discord.Intents.all()
-prefix = settings.settings['prefix']
+prefix = '/'
 
 client = commands.Bot(command_prefix=prefix, intents=intents)
+slash = SlashCommand(client, sync_commands=True)
 
 client.remove_command('help')
