@@ -3,12 +3,11 @@ from tools.client_init import *
 settings.commands['Information']['help'] = False
 
 @slash.slash(name="help",
-             description="Print list of commands in pm")
+             description="Print list of commands")
 async def help (ctx):
     
     member = ctx.author
     is_admin = member.guild_permissions.administrator
-    await ctx.send(f'<@{member.id}>, I sent you commands list in PM 👍')
 
     emb = discord.Embed( title = 'Commands list:', description = '', colour = discord.Color.light_grey() )
     emb.set_author(name = client.user.name, icon_url = client.user.avatar_url)
@@ -25,6 +24,5 @@ async def help (ctx):
 
     emb.set_thumbnail(url = "https://icons.iconarchive.com/icons/alecive/flatwoken/128/Apps-Help-icon.png")
 
-    dm = await member.create_dm()
-    await dm.send(embed=emb)
+    await ctx.send(embed=emb, hidden=True)
 
