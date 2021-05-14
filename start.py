@@ -57,5 +57,21 @@ async def on_command_error(ctx, error):
         return
     raise error
 
+@client.event
+async def on_member_join(member):
+    for module in custom_modules:
+        try:
+            await getattr(custom_modules[module], 'on_member_join')(member)
+        except:
+            pass
+
+@client.event
+async def on_voice_state_update(member, before, after):
+    for module in custom_modules:
+        try:
+            await getattr(custom_modules[module], 'on_voice_state_update')(member, before, after)
+        except:
+            pass
+
 # run that shit
 client.run (settings.settings['token'])

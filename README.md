@@ -91,3 +91,5 @@ async def on_message(message):
 > - on_ready
 > - on_message
 > - on_command_error
+> - on_member_join
+> - on_voice_state_update
