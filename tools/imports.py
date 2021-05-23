@@ -13,7 +13,10 @@ import os
 import imp
 
 from async_timeout import timeout
+
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
+
 from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option
+from discord_slash.utils.manage_commands import create_option, create_choice
+from discord_slash.model import SlashCommandOptionType

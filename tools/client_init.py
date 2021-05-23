@@ -1,4 +1,5 @@
 from tools.imports import *
+from tools.checks import *
 from config import settings
 
 intents = discord.Intents.all()

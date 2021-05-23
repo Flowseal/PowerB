@@ -31,7 +31,6 @@ async def voice_room_set(ctx, room_id: int):
 
 
 async def on_voice_state_update(member, before, after):
-  print('trigger')
   if member.bot:
     return False
 

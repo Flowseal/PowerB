@@ -25,4 +25,3 @@ async def help (ctx):
     emb.set_thumbnail(url = "https://icons.iconarchive.com/icons/alecive/flatwoken/128/Apps-Help-icon.png")
 
     await ctx.send(embed=emb, hidden=True)
-
