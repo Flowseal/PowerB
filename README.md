@@ -64,9 +64,6 @@ When user types */hello* (/ - prefix for slash commands) bot will reply with mes
 Add user command:
 > settings.commands['Fun']['hello'] = False
 
-Add admin command:
-> settings.admin_commands['Fun']['set_hello'] = True
-
 *'Fun'* - the category, that will contain provided command
 
 *'hello'* *'set_hello'* - command
