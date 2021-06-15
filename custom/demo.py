@@ -3,6 +3,9 @@
 # default imports
 from tools.client_init import *
 
+# custom imports from custom folder
+impext.do('custom/demo')
+
 '''
 You also can define your needed imports there
 '''
@@ -29,7 +32,8 @@ async def hello (ctx):
 @slash.slash(name="hello_admin",
              description="demo hello for admins")
 async def hello_admin (ctx):
-    # some checks for admin
+    if not await is_admin_notify(ctx):
+        return False
     pass
 
 

@@ -1,15 +1,14 @@
-# impext used for import all modules from folder
-# etc: impext.do("custom")
-from modules import impext
-
 # module imports and client init
 from tools.client_init import *
 
-# import custom user modules
-custom_modules = impext.do('custom')
-
 # remove debug messages
 youtube_dl.utils.bug_reports_message = lambda: ''
+
+# add modules in folder custom
+impext.do('custom')
+
+# to optimize checks
+custom_modules = impext.get_modules()
 
 @client.event
 async def on_ready():

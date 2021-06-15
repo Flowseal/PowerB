@@ -2,6 +2,10 @@ from tools.imports import *
 from tools.checks import *
 from config import settings
 
+# impext used for import all modules from folder
+# etc: impext.do("custom")
+from modules import impext
+
 intents = discord.Intents.all()
 prefix = '/'
 
