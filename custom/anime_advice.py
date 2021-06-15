@@ -129,7 +129,6 @@ settings.commands['Anime']['anime_advice'] = False
 
 @slash.slash(name="anime_advice",
 description="Advice you the anime",
-guild_ids=[847472067153494027],
 options=[
   create_option(
     name="type_genre",
