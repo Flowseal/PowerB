@@ -6,7 +6,7 @@
 > - Easy to customize
 > - Easy to add functions
 > - Unique and convenient system of functions
-> - Demo-files and first functions
+> - Demo-files and ready-to-use functions
 > 
 > *and some more..*
 
@@ -53,6 +53,19 @@ async def hello (ctx):
     await ctx.send('World!')
 ```
 When user types */hello* (/ - prefix for slash commands) bot will reply with message *World!*
+
+Also you can use **checks for admin** (*tools/checks.py*):
+```python
+if not is_admin(user):
+    #..
+    pass
+
+# or with notify (only async)
+
+if not await is_admin_notify(ctx):
+    #..
+    pass
+```
 <br><br>
 
 ## **How to add command in !help list**
@@ -62,10 +75,10 @@ When user types */hello* (/ - prefix for slash commands) bot will reply with mes
 **To add a command in each list follow this code:**
 
 Add user command:
-> settings.commands['Fun']['hello'] = False
+> settings.commands['Fun']['hello'] = **False**
 
 Add admin command:
-> settings.admin_commands['Fun']['set_hello'] = True
+> settings.commands['Fun']['set_hello'] = **True**
 
 *'Fun'* - the category, that will contain provided command
 
