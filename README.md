@@ -86,7 +86,6 @@ Add admin command:
 
 **True** - for admins only | **False** - for everyone
 
-= '..' - command description (will be printed with *command*_help)
 <br><br>
 
 ## **How to add event in function**
