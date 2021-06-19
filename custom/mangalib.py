@@ -1,7 +1,6 @@
 from tools.client_init import *
 from bs4 import BeautifulSoup
 from requests_html import AsyncHTMLSession
-from pisces import Pisces
 
 headers = { 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36 OPR/75.0.3969.285', 'cookie': 'XSRF-TOKEN=eyJpdiI6InZLZFR4Qi80a2tJWVJnQ1prUW4yU0E9PSIsInZhbHVlIjoiQ0VRTzhmZjl5V0cxNXEza3Q0d1RNbVFwTHhmUm1VWmFGbnh5VlNJOVE1SzI4NWZORU9zUHJQOWk1UE5TZGNCbXkxL1lpRDFDclZjZzFwUlFLN0p0SThhcXpjTUpUMWFucFVDL2g1SjRCeVppN2F5anBhUklQdC92TnR4ZU1pZE0iLCJtYWMiOiI1Y2M3YzIxOGUzODFiMzA3NjM3ZDA2NjI3ZDE2M2I3Y2E2OWJlOWU1YmExNTBmOWI4MDhkY2FhYzE4MjFjNGY3In0%3D; _ym_uid=1623941422937038083; _ym_d=1623941422; _ym_isad=2; _ym_visorc=w' }
 
