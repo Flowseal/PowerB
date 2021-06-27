@@ -13,10 +13,17 @@ regions_choices = [create_choice(
                     value=rg) for rg in regions_list]
 
 
-settings.commands['Server']['region_change'] = True
+settings.commands['Server']['region change'] = True
 settings.commands['Server']['region'] = False
 
-@slash.slash(name="region_change",
+@slash.subcommand(base="region", name="current",
+             description="Returns current server region")
+async def region (ctx):
+    emb = discord.Embed( title = 'Current region:', description = f'🌍 {str(ctx.guild.region)}', colour = discord.Color.light_grey() )
+    await ctx.send(embed=emb, hidden=True)
+
+
+@slash.subcommand(base="region", name="change",
              description="Changes the server region",
              options=[
                create_option(
@@ -26,8 +33,7 @@ settings.commands['Server']['region'] = False
                  required=True,
                  choices=regions_choices,
                )
-             ])
-             
+             ])   
 async def region_change (ctx, state:str):
   if not await is_admin_notify(ctx):
     return False
@@ -42,11 +48,5 @@ async def region_change (ctx, state:str):
 
   await ctx.guild.edit(region=discord.VoiceRegion(rg))
 
-  emb = discord.Embed( title = f"✅ Region changed from {old_region} to {str(ctx.guild.region)}!", description = '', colour = discord.Color.green() )
+  emb = discord.Embed( title = f"Region changed from {old_region} to {str(ctx.guild.region)}!", description = '', colour = discord.Color.green() )
   await ctx.send(embed=emb, hidden=True)
-
-@slash.slash(name="region",
-             description="Returns current server region")
-async def region (ctx):
-    emb = discord.Embed( title = 'Current region:', description = f'🌍 {str(ctx.guild.region)}', colour = discord.Color.light_grey() )
-    await ctx.send(embed=emb, hidden=True)

@@ -17,6 +17,9 @@ from async_timeout import timeout
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
 
-from discord_slash import SlashCommand
+from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_option, create_choice
 from discord_slash.model import SlashCommandOptionType
+from discord_slash.utils.manage_commands import create_permission
+from discord_slash.model import SlashCommandPermissionType
+from discord_slash import cog_ext

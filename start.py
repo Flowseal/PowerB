@@ -1,4 +1,5 @@
 # module imports and client init
+from custom.music import Music
 from tools.client_init import *
 
 # remove debug messages
@@ -72,6 +73,8 @@ async def on_voice_state_update(member, before, after):
             await getattr(custom_modules[module], 'on_voice_state_update')(member, before, after)
         except:
             pass
+
+client.add_cog(Music(client))
 
 # run that shit
 client.run (settings.settings['token'])

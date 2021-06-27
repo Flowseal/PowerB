@@ -125,9 +125,9 @@ async def parse_anime(url):
 
   return name, rating, form, episodes, status, genres, image, desc, is_footer
 
-settings.commands['Anime']['anime_advice'] = False
+settings.commands['Anime']['anime advice'] = False
 
-@slash.slash(name="anime_advice",
+@slash.subcommand(base="anime", name="advice",
 description="Advice you the anime",
 options=[
   create_option(

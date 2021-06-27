@@ -1,14 +1,14 @@
 from tools.client_init import *
 
-settings.commands['Voice rooms']['voice_room_set'] = True
+settings.commands['Voice rooms']['set-temp-voice-room'] = True
 
-@slash.slash(name="voice_room_set",
+@slash.slash(name="set-temp-voice-room",
              description="Set the room creator from temp voice rooms",
              options=[
                create_option(
                  name="room_id",
                  description="id of the created voice-channel room-creator",
-                 option_type=SlashCommandOptionType.STRING, # idk why but integer fucks up
+                 option_type=SlashCommandOptionType.STRING,
                  required=True
                )
              ])
@@ -18,10 +18,12 @@ async def voice_room_set(ctx, room_id: int):
   
   room_creator = client.get_channel(int(room_id))
   if (not room_creator):
-    await ctx.send('Wrong ID :red_circle:', hidden=True)
+    emb = discord.Embed( title = 'Wrong ID', description = '', colour = discord.Color.red() )
+    await ctx.send(embed=emb, hidden=True)
     return False
 
-  await ctx.send('Successful :green_circle:', hidden=True)
+  emb = discord.Embed( title = 'Successful', description = '', colour = discord.Color.green() )
+  await ctx.send(embed=emb, hidden=True)
   
   table[str(ctx.guild.id)] = int(room_id)
 

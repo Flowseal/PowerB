@@ -222,9 +222,9 @@ async def check(id:str, translator_id:str):
 
     return True
 
-settings.commands['Anime']['mangalib'] = False
+settings.commands['Anime']['anime mangalib'] = False
 
-@slash.slash(name="mangalib",
+@slash.subcommand(base="anime", name="mangalib",
              description="Subscribe/Unsub for manga chapters updates",
              options=[
                 create_option(
@@ -256,12 +256,12 @@ async def mangalib (ctx, id:str, command:str, translator_id:str=''):
     out = await check(id, translator_id)
 
     if not out:
-        emb = discord.Embed( title = '❌ Wrong manga id or problems with mangalib', description = '', colour = discord.Color.red() )
+        emb = discord.Embed( title = 'Wrong manga id or problems with mangalib', description = '', colour = discord.Color.red() )
         await ctx.send(embed=emb)
         return False
 
     if out == 'translator':
-        emb = discord.Embed( title = '❗ You should add translator id for this manga', description = '', colour = discord.Color.orange() )
+        emb = discord.Embed( title = 'You should add translator id for this manga', description = '', colour = discord.Color.orange() )
         await ctx.send(embed=emb)
         return False
 
@@ -271,13 +271,13 @@ async def mangalib (ctx, id:str, command:str, translator_id:str=''):
         result = await unsubscribe(ctx.author, id, translator_id)
 
     if not result:
-        emb = discord.Embed( title = '❌ Failure. Probably, you have already (un)subscribed to the manga', description = '', colour = discord.Color.red() )
+        emb = discord.Embed( title = 'Failure. Probably, you have already (un)subscribed to the manga', description = '', colour = discord.Color.red() )
         await ctx.send(embed=emb)
     else:
         if command == 'sub':
-            emb = discord.Embed( title = '✅ Successful! I will PM you, when the new chapter comes out', description = '', colour = discord.Color.green() )
+            emb = discord.Embed( title = 'Successful! I will PM you, when the new chapter comes out', description = '', colour = discord.Color.green() )
         else:
-            emb = discord.Embed( title = '✅ Successful! I unsubscribed you from getting updates', description = '', colour = discord.Color.green() )
+            emb = discord.Embed( title = 'Successful! I unsubscribed you from getting updates', description = '', colour = discord.Color.green() )
         await ctx.send(embed=emb)
 
     
