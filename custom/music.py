@@ -52,7 +52,6 @@ class Music(commands.Cog):
     settings.commands['Music']['set-music-channel'] = False
     @cog_ext.cog_slash(name='set-music-channel',
                 description='Sets music bot channel',
-                guild_ids=[621295534971420683, 847472067153494027],
                 options=[
                 create_option(
                  name="channel",
@@ -89,8 +88,7 @@ class Music(commands.Cog):
 
     settings.commands['Music']['music join'] = False
     @cog_ext.cog_subcommand(base="music", name='join',
-                description='Music bot joins the channel',
-                guild_ids=[621295534971420683, 847472067153494027],
+                description='Music bot joins the channel',           
                 options=[
                 create_option(
                  name="channel",
@@ -132,7 +130,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music leave'] = False
     @cog_ext.cog_subcommand(base="music", name='leave',
                 description='Music bot leaves current channel',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def leave (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -146,8 +143,7 @@ class Music(commands.Cog):
     
     settings.commands['Music']['music volume'] = False
     @cog_ext.cog_subcommand(base="music", name='volume',
-                description='Sets volume of tracks',
-                guild_ids=[621295534971420683, 847472067153494027],
+                description='Sets volume of tracks',              
                 options=[
                 create_option(
                  name="volume",
@@ -175,7 +171,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music pause'] = False
     @cog_ext.cog_subcommand(base="music", name='pause',
                 description='Pause music bot',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def pause (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -194,7 +189,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music resume'] = False
     @cog_ext.cog_subcommand(base="music", name='resume',
                 description='Resume music bot',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def resume (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -213,7 +207,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music stop'] = False
     @cog_ext.cog_subcommand(base="music", name='stop',
                 description='Stop music bot',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def stop (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -234,7 +227,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music loop'] = False
     @cog_ext.cog_subcommand(base="music", name='loop',
                 description='Loop current song',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def loop (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -253,7 +245,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music skip'] = False
     @cog_ext.cog_subcommand(base="music", name='skip',
                 description='Vote skip current song',
-                guild_ids=[621295534971420683, 847472067153494027]
                 )
     async def skip (self, ctx):
         await self.cog_before_invoke(ctx)
@@ -287,8 +278,7 @@ class Music(commands.Cog):
    
     settings.commands['Music']['music play'] = False
     @cog_ext.cog_subcommand(base="music", name='play',
-                description='Request song',
-                guild_ids=[621295534971420683, 847472067153494027],
+                description='Request song',                
                 options=[
                 create_option(
                  name="source",
@@ -325,7 +315,6 @@ class Music(commands.Cog):
     settings.commands['Music']['music queue'] = False
     @cog_ext.cog_subcommand(base="music", name='queue',
                 description='Song requests list',
-                guild_ids=[621295534971420683, 847472067153494027],
                 options=[
                 create_option(
                  name="page",
