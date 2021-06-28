@@ -61,6 +61,7 @@ class VoiceState:
         while True:
             self.next.clear()
             self.now = None
+            await self.message.edit(embed=self.empty_embed())
 
             if self.loop == False:
                 try:
@@ -78,6 +79,7 @@ class VoiceState:
             elif self.loop == True:
                 self.now = discord.FFmpegPCMAudio(self.current.source.stream_url, **YTDLSource.FFMPEG_OPTIONS)
                 self.voice.play(self.now, after=self.play_next_song)
+                await self.message.edit(embed=self.current.create_embed())
             
             await self.next.wait()
 

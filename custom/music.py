@@ -1,13 +1,43 @@
 from tools.client_init import *
+
 from custom.music_modules.youtube_dl import *
 from custom.music_modules.song import *
 from custom.music_modules.controller import *
+
+guild_states = {}
 
 class Music(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         self.voice_states = {}
+
+        bot.loop.create_task(self.scan_errors())
+
+    async def scan_errors(self):
+        while True:
+            for id in guild_states:
+                vs = self.voice_states.get(id)
+                if vs is not None:
+                    if guild_states[id]['leave']:
+                        vs.skip()
+                        await vs.stop()
+                        vs.play_next_song()
+
+                        guild_states[id]['leave'] = False
+
+                    
+                    if guild_states[id]['new']:        
+                        if vs.channel.id != self.bot.user.voice.channel.id:
+                            vs.skip()
+                            await vs.stop()
+                            vs.play_next_song()
+
+                        guild_states[id]['new'] = False
+
+
+            await asyncio.sleep(5.0)
+
 
     async def get_music_channel(self, ctx: commands.Context):
         with open('files/music.json') as f:
@@ -47,7 +77,6 @@ class Music(commands.Cog):
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send(f'An error occurred: `{str(error)}`')
-
 
     settings.commands['Music']['set-music-channel'] = False
     @cog_ext.cog_slash(name='set-music-channel',
@@ -326,6 +355,10 @@ class Music(commands.Cog):
     async def queue (self, ctx, page:str=''):
         await self.cog_before_invoke(ctx)
 
+        if len(ctx.voice_state.songs) <= 0:
+            emb = discord.Embed( title = 'Songs queue is empty', description = '', colour = discord.Color.red() )
+            return await ctx.send(embed=emb, hidden=True)
+
         if not page:
             page = 1
         page = int(page)
@@ -350,6 +383,40 @@ class Music(commands.Cog):
 
         await self.cog_after_invoke(ctx)
 
-    
 
+''' To fix some unexpected errors due to bot leaves/crash '''
+async def on_voice_state_update(member, before, after):
+    if member.id != client.user.id:
+        return
+
+    leave_update = False
+    new_channel = False
+
+    if after.channel is None:
+        leave_update = True
+
+    elif before.channel is not None:
+        new_channel = True
+
+    if before.channel is not None:
+        id = str(before.channel.guild.id)
+    else:
+        id = str(after.channel.guild.id)
+
+    global guild_states
+    if id not in guild_states:
+        guild_states[id] = {}
+
+    if 'leave' not in guild_states[id]:
+        guild_states[id]['leave'] = False
+
+    if 'new' not in guild_states[id]:
+        guild_states[id]['new'] = False
+
+    if leave_update:
+        guild_states[id]['leave'] = True
+    if new_channel:
+        guild_states[id]['new'] = True  
+
+    
 
