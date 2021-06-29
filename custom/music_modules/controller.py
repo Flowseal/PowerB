@@ -4,8 +4,12 @@ from custom.music_modules.youtube_dl import YTDLSource, VoiceError
 
 class VoiceState:
     def __init__(self, bot: commands.Bot, ctx: commands.Context, channel: discord.TextChannel):
-        self.bot = bot
+        self.bot = bot  
         self._ctx = ctx
+
+        self.channel = channel
+        self.message = None
+        bot.loop.create_task(self.prepare_channel())
 
         self.current = None
         self.voice = None
@@ -17,10 +21,7 @@ class VoiceState:
         self.skip_votes = set()
 
         self.audio_player = bot.loop.create_task(self.audio_player_task())
-        self.channel = channel
-        self.message = None
         
-        bot.loop.create_task(self.prepare_channel())
 
     def __del__(self):
         self.audio_player.cancel()
@@ -61,6 +62,11 @@ class VoiceState:
         while True:
             self.next.clear()
             self.now = None
+
+            if not self.message:
+                await asyncio.sleep(2.0)
+                continue
+
             await self.message.edit(embed=self.empty_embed())
 
             if self.loop == False:
@@ -102,4 +108,5 @@ class VoiceState:
             await self.voice.disconnect()
             self.voice = None
 
-        await self.message.edit(embed=self.empty_embed())
+        if self.message:
+            await self.message.edit(embed=self.empty_embed())

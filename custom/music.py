@@ -17,7 +17,7 @@ class Music(commands.Cog):
     async def scan_errors(self):
         while True:
             for id in guild_states:
-                vs = self.voice_states.get(id)
+                vs = self.voice_states.get(int(id))
                 if vs is not None:
                     if guild_states[id]['leave']:
                         vs.skip()
@@ -25,15 +25,6 @@ class Music(commands.Cog):
                         vs.play_next_song()
 
                         guild_states[id]['leave'] = False
-
-                    
-                    if guild_states[id]['new']:        
-                        if vs.channel.id != self.bot.user.voice.channel.id:
-                            vs.skip()
-                            await vs.stop()
-                            vs.play_next_song()
-
-                        guild_states[id]['new'] = False
 
 
             await asyncio.sleep(5.0)
@@ -318,6 +309,7 @@ class Music(commands.Cog):
                 ])
     async def play (self, ctx:SlashContext, source:str):
         await self.cog_before_invoke(ctx)
+        await ctx.defer(hidden=True)
 
         if not ctx.voice_state.voice:
             if ctx.author.voice:
@@ -388,35 +380,18 @@ class Music(commands.Cog):
 async def on_voice_state_update(member, before, after):
     if member.id != client.user.id:
         return
-
-    leave_update = False
-    new_channel = False
-
+    
     if after.channel is None:
-        leave_update = True
+        pass
+    else: return
 
-    elif before.channel is not None:
-        new_channel = True
-
-    if before.channel is not None:
-        id = str(before.channel.guild.id)
-    else:
-        id = str(after.channel.guild.id)
+    id = str(before.channel.guild.id)
 
     global guild_states
     if id not in guild_states:
         guild_states[id] = {}
 
-    if 'leave' not in guild_states[id]:
-        guild_states[id]['leave'] = False
+    guild_states[id]['leave'] = True
 
-    if 'new' not in guild_states[id]:
-        guild_states[id]['new'] = False
 
-    if leave_update:
-        guild_states[id]['leave'] = True
-    if new_channel:
-        guild_states[id]['new'] = True  
-
-    
-
+client.add_cog(Music(client))
