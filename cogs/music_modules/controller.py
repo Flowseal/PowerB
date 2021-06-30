@@ -1,6 +1,6 @@
 from tools.client_init import *
-from custom.music_modules.song import SongQueue
-from custom.music_modules.youtube_dl import YTDLSource, VoiceError
+from cogs.music_modules.song import SongQueue
+from cogs.music_modules.youtube_dl import YTDLSource, VoiceError
 
 class VoiceState:
     def __init__(self, bot: commands.Bot, ctx: commands.Context, channel: discord.TextChannel):

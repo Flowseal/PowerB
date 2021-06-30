@@ -1,8 +1,8 @@
 from tools.client_init import *
 
-from custom.music_modules.youtube_dl import *
-from custom.music_modules.song import *
-from custom.music_modules.controller import *
+from cogs.music_modules.youtube_dl import *
+from cogs.music_modules.song import *
+from cogs.music_modules.controller import *
 
 guild_states = {}
 
@@ -394,4 +394,5 @@ async def on_voice_state_update(member, before, after):
     guild_states[id]['leave'] = True
 
 
-client.add_cog(Music(client))
+def setup(client: commands.Bot):
+    client.add_cog(Music(client))

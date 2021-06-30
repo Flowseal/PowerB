@@ -1,5 +1,5 @@
 from tools.client_init import *
-from custom.music_modules.youtube_dl import YTDLSource
+from cogs.music_modules.youtube_dl import YTDLSource
 
 class Song:
     __slots__ = ('source', 'requester')
