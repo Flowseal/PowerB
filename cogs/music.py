@@ -138,9 +138,9 @@ class Music(commands.Cog):
                 emb = discord.Embed( title = 'Bot already exists', description = '', colour = discord.Color.red() )
                 return await ctx.send(embed=emb, hidden=True)
 
-            await ctx.voice_state.voice.disconnect()
-            
-        ctx.voice_state.voice = await destination.connect()
+            await ctx.voice_state.voice.move_to(destination)
+        else:       
+            ctx.voice_state.voice = await destination.connect()
 
         emb = discord.Embed( title = 'Successful', description = '', colour = discord.Color.green() )
         await ctx.send(embed=emb, hidden=True)
