@@ -18,8 +18,9 @@ class Music(commands.Cog):
         while True:
             for id in guild_states:
                 vs = self.voice_states.get(int(id))
-                if vs is not None:
+                if vs is not None and vs.voice is not None:
                     if guild_states[id]['leave']:
+
                         vs.skip()
                         await vs.stop()
                         vs.play_next_song()

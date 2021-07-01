@@ -10,6 +10,6 @@ intents = discord.Intents.all()
 prefix = '/'
 
 client = commands.Bot(command_prefix=prefix, intents=intents)
-slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
+slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True, delete_from_unused_guilds=True)
 
 client.remove_command('help')

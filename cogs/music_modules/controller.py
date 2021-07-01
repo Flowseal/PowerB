@@ -66,7 +66,7 @@ class VoiceState:
             if not self.message:
                 await asyncio.sleep(2.0)
                 continue
-
+            
             await self.message.edit(embed=self.empty_embed())
 
             if self.loop == False:
@@ -75,7 +75,7 @@ class VoiceState:
                         self.current = await self.songs.get()
                 except asyncio.TimeoutError:
                     self.bot.loop.create_task(self.stop())
-                    return
+                    continue
                 
                 self.skip_votes.clear()
                 self.current.source.volume = self._volume
