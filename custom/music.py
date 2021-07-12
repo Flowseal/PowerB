@@ -1,8 +1,8 @@
 from tools.client_init import *
 
-from cogs.music_modules.youtube_dl import *
-from cogs.music_modules.song import *
-from cogs.music_modules.controller import *
+from custom.music_modules.youtube_dl import *
+from custom.music_modules.song import *
+from custom.music_modules.controller import *
 
 guild_states = {}
 
@@ -20,7 +20,6 @@ class Music(commands.Cog):
                 vs = self.voice_states.get(int(id))
                 if vs is not None and vs.voice is not None:
                     if guild_states[id]['leave']:
-
                         vs.skip()
                         await vs.stop()
                         vs.play_next_song()
@@ -395,5 +394,4 @@ async def on_voice_state_update(member, before, after):
     guild_states[id]['leave'] = True
 
 
-def setup(client: commands.Bot):
-    client.add_cog(Music(client))
+client.add_cog(Music(client))

@@ -1,6 +1,6 @@
 from tools.client_init import *
-from cogs.music_modules.song import SongQueue
-from cogs.music_modules.youtube_dl import YTDLSource, VoiceError
+from custom.music_modules.song import SongQueue
+from custom.music_modules.youtube_dl import YTDLSource, VoiceError
 
 class VoiceState:
     def __init__(self, bot: commands.Bot, ctx: commands.Context, channel: discord.TextChannel):
@@ -66,7 +66,7 @@ class VoiceState:
             if not self.message:
                 await asyncio.sleep(2.0)
                 continue
-            
+
             await self.message.edit(embed=self.empty_embed())
 
             if self.loop == False:

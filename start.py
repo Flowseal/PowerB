@@ -73,9 +73,5 @@ async def on_voice_state_update(member, before, after):
         except:
             pass
 
-cogs_ext = [f.replace('cogs\\', '').replace('.py', '') for f in glob.glob('cogs/*.py')]
-for cog in cogs_ext:
-    client.load_extension(f'cogs.{cog}')
-
 # run that shit
 client.run (settings.settings['token'])
