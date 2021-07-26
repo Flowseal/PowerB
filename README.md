@@ -68,26 +68,6 @@ if not await is_admin_notify(ctx):
 ```
 <br><br>
 
-## **How to add command in !help list**
-**The bot provided with help command:**
-- */help* - print command list in pm
-
-**To add a command in each list follow this code:**
-
-Add user command:
-> settings.commands['Fun']['hello'] = **False**
-
-Add admin command:
-> settings.commands['Fun']['set_hello'] = **True**
-
-*'Fun'* - the category, that will contain provided command
-
-*'hello'* *'set_hello'* - command
-
-**True** - for admins only | **False** - for everyone
-
-<br><br>
-
 ## **How to add event in function**
 To add event just create a default python function with event name
 

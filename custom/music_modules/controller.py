@@ -86,7 +86,7 @@ class VoiceState:
                 self.now = discord.FFmpegPCMAudio(self.current.source.stream_url, **YTDLSource.FFMPEG_OPTIONS)
                 self.voice.play(self.now, after=self.play_next_song)
                 await self.message.edit(embed=self.current.create_embed())
-            
+             
             await self.next.wait()
 
     def play_next_song(self, error=None):

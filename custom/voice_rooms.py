@@ -1,7 +1,5 @@
 from tools.client_init import *
 
-settings.commands['Voice rooms']['set-temp-voice-room'] = True
-
 @slash.slash(name="set-temp-voice-room",
              description="Set the room creator from temp voice rooms",
              options=[

@@ -13,9 +13,6 @@ regions_choices = [create_choice(
                     value=rg) for rg in regions_list]
 
 
-settings.commands['Server']['region change'] = True
-settings.commands['Server']['region'] = False
-
 @slash.subcommand(base="region", name="current",
              description="Returns current server region")
 async def region (ctx):

@@ -69,7 +69,6 @@ class Music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send(f'An error occurred: `{str(error)}`')
 
-    settings.commands['Music']['set-music-channel'] = False
     @cog_ext.cog_slash(name='set-music-channel',
                 description='Sets music bot channel',
                 options=[
@@ -106,7 +105,6 @@ class Music(commands.Cog):
         await ctx.send(embed=emb, hidden=True)
 
 
-    settings.commands['Music']['music join'] = False
     @cog_ext.cog_subcommand(base="music", name='join',
                 description='Music bot joins the channel',           
                 options=[
@@ -147,7 +145,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
 
     
-    settings.commands['Music']['music leave'] = False
     @cog_ext.cog_subcommand(base="music", name='leave',
                 description='Music bot leaves current channel',
                 )
@@ -160,8 +157,7 @@ class Music(commands.Cog):
 
         await self.cog_after_invoke(ctx)
 
-    
-    settings.commands['Music']['music volume'] = False
+
     @cog_ext.cog_subcommand(base="music", name='volume',
                 description='Sets volume of tracks',              
                 options=[
@@ -188,7 +184,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
     
 
-    settings.commands['Music']['music pause'] = False
     @cog_ext.cog_subcommand(base="music", name='pause',
                 description='Pause music bot',
                 )
@@ -206,7 +201,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
     
 
-    settings.commands['Music']['music resume'] = False
     @cog_ext.cog_subcommand(base="music", name='resume',
                 description='Resume music bot',
                 )
@@ -223,8 +217,7 @@ class Music(commands.Cog):
 
         await self.cog_after_invoke(ctx)
 
-    
-    settings.commands['Music']['music stop'] = False
+
     @cog_ext.cog_subcommand(base="music", name='stop',
                 description='Stop music bot',
                 )
@@ -245,7 +238,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
 
     
-    settings.commands['Music']['music loop'] = False
     @cog_ext.cog_subcommand(base="music", name='loop',
                 description='Loop current song',
                 )
@@ -263,7 +255,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
 
     
-    settings.commands['Music']['music skip'] = False
     @cog_ext.cog_subcommand(base="music", name='skip',
                 description='Vote skip current song',
                 )
@@ -299,7 +290,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
 
    
-    settings.commands['Music']['music play'] = False
     @cog_ext.cog_subcommand(base="music", name='play',
                 description='Request song',                
                 options=[
@@ -336,7 +326,6 @@ class Music(commands.Cog):
         await self.cog_after_invoke(ctx)
     
 
-    settings.commands['Music']['music queue'] = False
     @cog_ext.cog_subcommand(base="music", name='queue',
                 description='Song requests list',
                 options=[

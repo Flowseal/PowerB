@@ -222,7 +222,6 @@ async def check(id:str, translator_id:str):
 
     return True
 
-settings.commands['Anime']['anime mangalib'] = False
 
 @slash.subcommand(base="anime", name="mangalib",
              description="Subscribe/Unsub for manga chapters updates",

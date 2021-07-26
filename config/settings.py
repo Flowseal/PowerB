@@ -2,7 +2,7 @@ from collections import defaultdict
 
 settings = {
     'token': '',
-    'github': '', # additive content in github.py
+    'github': '',
 }
 
 commands = defaultdict(dict)
