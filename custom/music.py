@@ -22,7 +22,7 @@ class Music(commands.Cog):
                     if guild_states[id]['leave']:
                         vs.skip()
                         await vs.stop()
-                        vs.play_next_song()
+                        #vs.play_next_song()
 
                         guild_states[id]['leave'] = False
 
@@ -236,7 +236,8 @@ class Music(commands.Cog):
         if ctx.voice_state.is_playing:
             ctx.voice_state.voice.stop()
 
-        await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
+        if ctx.voice_state.message:
+            await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
 
         emb = discord.Embed( title = 'Successful', description = '', colour = discord.Color.green() )   
         await ctx.send(embed=emb, hidden=True)
@@ -276,7 +277,8 @@ class Music(commands.Cog):
         autoskip = is_admin(ctx.author) or ctx.author == ctx.voice_state.current.requester
 
         if autoskip:
-            await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
+            if ctx.voice_state.message:
+                await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
             ctx.voice_state.skip()
             emb = discord.Embed( title = 'Successful!', description = '', colour = discord.Color.green() )
             await self.cog_after_invoke(ctx)
@@ -287,7 +289,8 @@ class Music(commands.Cog):
 
         votes = len(ctx.voice_state.skip_votes)
         if votes >= math.ceil(len(ctx.voice_state.voice.members) / 3):
-            await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
+            if ctx.voice_state.message:
+                await ctx.voice_state.message.edit(embed=ctx.voice_state.empty_embed())
             ctx.voice_state.skip()
 
         emb = discord.Embed( title = 'Successful', description = f'Votes: {len(ctx.voice_state.skip_votes)}/{math.ceil(len(ctx.voice_state.voice.members) / 3)}', colour = discord.Color.green() )   

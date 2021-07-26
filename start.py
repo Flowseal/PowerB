@@ -6,7 +6,7 @@ youtube_dl.utils.bug_reports_message = lambda: ''
 
 # add modules in folder custom
 impext.do('custom')
-
+    
 # to optimize checks
 custom_modules = impext.get_modules()
 
@@ -22,26 +22,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if (message.author.bot):
-        return False
-
     for module in custom_modules:
         try:
             await getattr(custom_modules[module], 'on_message')(message)
         except:
             pass
-
-    if (len(message.content) > 0):
-        is_command = message.content[0] == prefix
-
-        if is_command:
-            mes = message.content.lower()[1:]
-            for table in settings.commands:
-                    for command in settings.commands[table]:
-                        if mes.startswith(command.lower()) and settings.commands[table][command]:
-                            if not message.author.guild_permissions.administrator:
-                                return False
-
 
     await client.process_commands(message)
 
